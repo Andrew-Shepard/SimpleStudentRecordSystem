@@ -17,16 +17,16 @@ class Course {
 class SingleLinkedList{
     -*head
 
-    add(T data):void
-    delete(T data):void
+    +add(T data):void
+    +delete(T data):void
 }
 class DoubleLinkedList{
     -*head
     -*tail
     -uint64_t length
 
-    add(T data):void
-    delete(T data):void
+    +add(T data):void
+    +delete(T data):void
 
 }
 class RecordManager{
@@ -34,12 +34,17 @@ class RecordManager{
     -String COURSES_CSV_PATH
     -DoubleLinkedList<Student> students
     -DoubleLinkedList<Course> courses
+    -Records records
 
     -isCSV(String PATH):boolean
     -load():void
     -loadStudent():void
     -loadCourses():void
+    -initializeRecords():void
+
     +displayMenu():void
+    -takeMenuInput():void
+
     +addStudent():void
     +deleteStudent():void
     +deleteCourse():void
@@ -58,6 +63,10 @@ class Records{
     -uint32_t number_of_students
     -double average_GPA
     -DoubleLinkedList<Student> students
+
+    +addStudent():void
+    +removeStudent():void
+    -updateAverage_gpa():void
 }
 Person --|> Student : Inherits
 Student o-- SingleLinkedList

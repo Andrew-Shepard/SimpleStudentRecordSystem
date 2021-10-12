@@ -13,7 +13,11 @@ class Records {
         uint32_t number_of_students;
         double average_GPA;
         //Double linked list of students named students
+        void updateAverage_gpa();
     public:
+        void addStudent();
+        void removeStudent();
+
         void setNumber_of_students(uint32_t number_of_students);
         void setAverage_GPA(double average_GPA);
         double getAverage_GPA();

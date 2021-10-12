@@ -8,7 +8,7 @@
 
 #include <cstdint>
 
-class Student {
+class Student { //NEEDS TO INHERIT FROM PERSON!
     private:
         uint32_t total_credit_hours;
         uint32_t number_of_credit_hours;

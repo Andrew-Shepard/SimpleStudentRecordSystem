@@ -7,6 +7,8 @@
 
 #include <string>
 #include <rpcndr.h>
+#include "Student.h"
+#include "Course.h"
 
 using namespace std;
 
@@ -21,11 +23,21 @@ class RecordManager {
         void load();
         void loadStudent();
         void loadCourses();
+        void takeMenuInput();
     public:
-        void displayMenu();;
-        void addStudent();
-        void deleteStudent();
-        void deleteCourse();
+        void displayMenu();
+        void addStudent(Student student);
+        void deleteStudent(Student student);
+        void deleteCourse(Student student, Course course);
+
+        string getSTUDENT_CSV_PATH();
+        string getCOURSES_CSV_PATH();
+        void setSTUDENT_CSV_PATH(string STUDENT_CSV_PATH);
+        void setCOURSES_CSV_PATH(string COURSES_CSV_PATH);
+        //get doublelist
+        //get singlelist
+        //set doublelist
+        //set singlelist
 
 };
 
