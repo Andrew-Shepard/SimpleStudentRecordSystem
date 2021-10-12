@@ -11,7 +11,7 @@ class Course {
     -double grade
     -uint8_t credit_hour
 
-    +setAll(String code, String title, \n
+    +setAll(String code, String title,
         double grade, uint8_t credit_hour):void
 }
 class SingleLinkedList{
@@ -43,7 +43,6 @@ class RecordManager{
     +addStudent():void
     +deleteStudent():void
     +deleteCourse():void
-    +intialize():void
 }
 class Student{
     -uint32_t total_credit_hours
