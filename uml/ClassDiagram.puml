@@ -73,6 +73,10 @@ Student o-- SingleLinkedList
 Records o-- DoubleLinkedList
 Student o-- Course
 Records o-- Student
+RecordManager o-- DoubleLinkedList
+RecordManager o-- Records
+RecordManager o-- Student
+RecordManager o-- Course
 
 class Person
 note "every variable in program\nhas a public setter and getter" as N2
