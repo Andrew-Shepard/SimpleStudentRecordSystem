@@ -1,0 +1,75 @@
+@startuml
+
+class Person {
+    #String name
+    #uint8_t age
+}
+
+class Course {
+    -String code
+    -String title
+    -double grade
+    -uint8_t credit_hour
+
+    +setAll(String code, String title, \n
+        double grade, uint8_t credit_hour):void
+}
+class SingleLinkedList{
+    -*head
+
+    add(T data):void
+    delete(T data):void
+}
+class DoubleLinkedList{
+    -*head
+    -*tail
+    -uint64_t length
+
+    add(T data):void
+    delete(T data):void
+
+}
+class RecordManager{
+    -String STUDENT_CSV_PATH
+    -String COURSES_CSV_PATH
+    -DoubleLinkedList<Student> students
+    -DoubleLinkedList<Course> courses
+
+    -isCSV(String PATH):boolean
+    -load():void
+    -loadStudent():void
+    -loadCourses():void
+    +displayMenu():void
+    +addStudent():void
+    +deleteStudent():void
+    +deleteCourse():void
+    +intialize():void
+}
+class Student{
+    -uint32_t total_credit_hours
+    -uint32_t number_of_courses
+    -uint32t uid
+    -double gpa
+    -SingleLinkedList<Course> courses
+
+    +addCourse():void
+    +deleteCourse():void
+}
+class Records{
+    -uint32_t number_of_students
+    -double average_GPA
+    -DoubleLinkedList<Student> students
+}
+Person --|> Student : Inherits
+Student o-- SingleLinkedList
+Records o-- DoubleLinkedList
+Student o-- Course
+Records o-- Student
+
+class Person
+note "every variable in program\nhas a public setter and getter" as N2
+note bottom of N2 : "every class has << as an overloaded print operator\n for its contents" as N1
+note top of RecordManager : "CSVs share uid's that link the data"
+@enduml
+
+
