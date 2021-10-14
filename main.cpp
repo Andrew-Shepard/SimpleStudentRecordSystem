@@ -3,7 +3,9 @@
 
 int main() {
     RecordManager recordManager;
-    recordManager.displayMenu();
+    Student student(1,2,3,4.0,12,"buh");
+    cout << student;
+    //recordManager.displayMenu();
 
     return 0;
 }

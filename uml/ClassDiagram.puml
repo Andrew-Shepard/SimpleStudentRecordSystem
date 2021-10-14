@@ -77,6 +77,8 @@ class Student{
     -double gpa
     -SingleLinkedList<Course> courses
 
+    +Student()
+    +Student(uint32_t total_credit_hours, uint32_t number_of_courses, uint32_t uid, double gpa)
     +addCourse():void
     +deleteCourse():void
 }
