@@ -25,6 +25,7 @@ class RecordManager {
         void loadCourses();
         void takeMenuInput();
     public:
+
         void displayMenu();
         void addStudent(Student student);
         void deleteStudent(Student student);

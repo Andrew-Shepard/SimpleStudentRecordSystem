@@ -3,3 +3,21 @@
 //
 
 #include "Course.h"
+void Course::setAll(string code, string title, double grade, uint8_t credit_hour){
+    this->code = code;
+    this->title = title;
+    this->grade = grade;
+    this->credit_hour = credit_hour;
+}
+void Course::setCode(string code){
+    this->code = code;
+}
+void Course::setTitle(string title){
+    this->title = title;
+}
+void Course::setGrade(double grade){
+    this->grade = grade;
+}
+void Course::setCredit_hour(uint8_t credit_hour){
+    this->credit_hour = credit_hour;
+}

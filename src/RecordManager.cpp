@@ -11,7 +11,11 @@ string COURSES_CSV_PATH = "coursesDefault.csv";
 //Single Linked List of courses (Contains uid for student)
 
 bool RecordManager::isCSV(string path){
-    //if the path ends in .csv return true else false
+    //if the path ends in .csv return true (1) else false (0)
+    if (path.substr(path.length()-4,path.length()) == ".csv"){
+        return true;
+    }
+    return false;
 }
 void RecordManager::load(){
     //loadStudent
@@ -53,7 +57,7 @@ void RecordManager::displayMenu(){
             "[6] Delete a course from a student\n"
             "\n"
             "Enter your selection: ";
-    //takemenuinput()
+    takeMenuInput();
 }
 void RecordManager::takeMenuInput() {
     uint8_t input = 0;

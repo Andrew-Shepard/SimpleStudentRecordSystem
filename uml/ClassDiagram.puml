@@ -3,6 +3,8 @@
 class Person {
     #String name
     #uint8_t age
+
+    operator<<():void
 }
 
 class Course {
@@ -11,6 +13,8 @@ class Course {
     -double grade
     -uint8_t credit_hour
 
+    +Course(string code, string title, double grade, uint8_t credit_hour)
+    +Course()
     +setAll(String code, String title,
         double grade, uint8_t credit_hour):void
 }
@@ -28,8 +32,8 @@ class DoubleLinkedList{
     +delete(T data):void
 }
 class SingleNode{
-    #T data;
-    #SingleNode *next;
+    -T data
+    -SingleNode *next
 
     +getData():T
     +setData():T
@@ -38,7 +42,11 @@ class SingleNode{
 }
 class DoubleNode{
     -DoubleNode *previous
+    -DoubleNode *next
+    -T data
 
+    +getNext(DoubleNode *next)
+    +setNext(DoubleNode *next)
     +getPrevious(DoubleNode *previous)
     +setPrevious(DoubleNode *previous)
 }
@@ -77,9 +85,11 @@ class Records{
     -double average_GPA
     -DoubleLinkedList<Student> students
 
-    +addStudent():void
-    +removeStudent():void
-    -updateAverage_gpa():void
+    +Records()
+    +Records(uint32_t number_of_students, double average_GPA)
+    +addStudent(double student_average_GPA):void
+    +removeStudent(double student_average_GPA):void
+    -updateAverage_gpa(double student_average_GPA):void
 }
 Person --|> Student : Inherits
 Student o-- SingleLinkedList
