@@ -31,7 +31,7 @@ class Records {
         void setAverage_GPA(double average_GPA);
         double getAverage_GPA();
         uint32_t getNumber_of_students();
-        ostream& operator<<(Records records); //https://docs.microsoft.com/en-us/cpp/standard-library/overloading-the-output-operator-for-your-own-classes?view=msvc-160
+        //https://docs.microsoft.com/en-us/cpp/standard-library/overloading-the-output-operator-for-your-own-classes?view=msvc-160
 };
 
 

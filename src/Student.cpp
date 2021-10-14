@@ -3,11 +3,6 @@
 //
 
 #include "Student.h"
-
-uint32_t total_credit_hours = 0;
-uint32_t number_of_courses = 0;
-uint32_t uid = 0;
-double gpa = 0;
 //Single Linked List of course objects
 
 void Student::addCourse(){
@@ -22,8 +17,11 @@ void Student::deleteCourse(){
 }
 
 ostream& operator<<(ostream& os, const Student& student){
-    os << "Total Credit Hours: " << student.total_credit_hours << "\nNumber of courses: "
-       << student.number_of_courses << "\nUID: " << student.uid << "\nGPA: " << student.gpa;
+    //8bits print as ascii characters sometimes lol! tostring.
+    os << "Name: "<< student.name << "\nAge: " << to_string(student.age)
+        << "\nTotal credit hours: " << student.total_credit_hours
+            << "\nNumber of Courses: "<< student.number_of_courses
+                << "\nUID: "<< student.uid << "\nGPA :"<< student.gpa;
     return os;
 }
 

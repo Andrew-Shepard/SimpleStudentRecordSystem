@@ -17,6 +17,11 @@ void Records::removeStudent(double student_average_GPA){
     number_of_students--;
     updateAverage_gpa((-1*student_average_GPA));
 }
+ostream& operator<<(ostream& os, const Records& records){
+    os << "Numbers of students: " << records.number_of_students << "\nAverage GPA: "
+       << records.average_GPA;
+    return os;
+}
 //Users ideally wouldn't be able to access any setter function
 void Records::setNumber_of_students(uint32_t number_of_students){
     this->number_of_students = number_of_students;

@@ -6,12 +6,15 @@
 #define SIMPLESTUDENTRECORDSYSTEM_PERSON_H
 
 #include<string>
+#include <iostream>
 
+using namespace std;
 class Person {
     protected:
         std::string name;
         uint8_t age = 0;
     public:
+        friend ostream& operator<<(ostream& os, const Person& records);
         Person(){}
         Person(std::string name, uint8_t age){
             this->name = name;
@@ -21,6 +24,7 @@ class Person {
         void setAge(uint8_t age);
         std::string getName();
         uint8_t getAge();
+
 };
 
 

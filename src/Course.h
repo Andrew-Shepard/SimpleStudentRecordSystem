@@ -7,6 +7,8 @@
 
 
 #include <string>
+#include <iostream>
+
 using namespace std;
 class Course {
     private:
@@ -22,6 +24,7 @@ class Course {
             this->grade = grade;
             this->credit_hour = credit_hour;
         }
+        friend ostream& operator<<(ostream& os, const Course& course);
         void setAll(string code, string title, double grade, uint8_t credit_hour);
         void setCode(string code);
         void setTitle(string title);
