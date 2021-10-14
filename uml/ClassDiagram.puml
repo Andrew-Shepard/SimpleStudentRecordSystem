@@ -15,19 +15,32 @@ class Course {
         double grade, uint8_t credit_hour):void
 }
 class SingleLinkedList{
-    -*head
+    #*head
 
     +add(T data):void
     +delete(T data):void
 }
 class DoubleLinkedList{
-    -*head
     -*tail
     -uint64_t length
 
     +add(T data):void
     +delete(T data):void
+}
+class SingleNode{
+    #T data;
+    #SingleNode *next;
 
+    +getData():T
+    +setData():T
+    +getNext(SingleNode *next)
+    +setNext(SingleNode *next)
+}
+class DoubleNode{
+    -DoubleNode *previous
+
+    +getPrevious(DoubleNode *previous)
+    +setPrevious(DoubleNode *previous)
 }
 class RecordManager{
     -String STUDENT_CSV_PATH
@@ -36,7 +49,7 @@ class RecordManager{
     -DoubleLinkedList<Course> courses
     -Records records
 
-    -isCSV(String PATH):boolean
+    -isCSV(String PATH):bool
     -load():void
     -loadStudent():void
     -loadCourses():void
@@ -77,8 +90,12 @@ RecordManager o-- DoubleLinkedList
 RecordManager o-- Records
 RecordManager o-- Student
 RecordManager o-- Course
+SingleLinkedList o-- SingleNode
+DoubleLinkedList o-- DoubleNode
 
-class Person
+SingleLinkedList --|> DoubleLinkedList : Inherits
+SingleNode --|> DoubleNode : ???
+
 note "every variable in program\nhas a public setter and getter" as N2
 note bottom of N2 : "every class has << as an overloaded print operator\n for its contents" as N1
 note top of RecordManager : "CSVs share uid's that link the data"

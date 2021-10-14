@@ -6,7 +6,7 @@
 #define SIMPLESTUDENTRECORDSYSTEM_RECORDMANAGER_H
 
 #include <string>
-#include <rpcndr.h>
+
 #include "Student.h"
 #include "Course.h"
 
@@ -19,7 +19,7 @@ class RecordManager {
         //Double linked list of students
         //Single Linked List of courses (Contains uid for student)
 
-        boolean isCSV(string path);
+        bool isCSV(string path);
         void load();
         void loadStudent();
         void loadCourses();

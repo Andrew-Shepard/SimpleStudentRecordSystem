@@ -1,6 +1,9 @@
 #include <iostream>
+#include "src/RecordManager.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    RecordManager recordManager;
+    recordManager.displayMenu();
+
     return 0;
 }
