@@ -2,49 +2,50 @@
 // Created by andre on 10/12/2021.
 //
 
-#include <iostream>
+
 #include "RecordManager.h"
 
-string STUDENT_CSV_PATH = "default.csv";
-string COURSES_CSV_PATH = "coursesDefault.csv";
-//Double linked list of students
-//Single Linked List of courses (Contains uid for student)
+DoubleLinkedList<Student> list_of_students;
+SingleLinkedList<Course> list_of_courses;
 
-bool RecordManager::isCSV(string path){
+bool RecordManager::isCSV(string path) {
     //if the path ends in .csv return true (1) else false (0)
-    if (path.substr(path.length()-4,path.length()) == ".csv"){
+    if (path.substr(path.length() - 4, path.length()) == ".csv") {
         return true;
     }
     return false;
 }
-void RecordManager::load(){
+
+void RecordManager::load() {
     //loadStudent
     //loadCourses
 }
-void RecordManager::loadStudent(){
+
+void RecordManager::loadStudent() {
     //using the text in default.csv
     //while there is another line in the csv
-        //load the new line
-        //split the line by commas into an array of strings
-        //create a new student object
-        /** set the values of the student object to the corresponding elements
-         *  in the string array
-         */
-}
-void RecordManager::loadCourses(){
-    //using the text in defaultCourses.csv
-    //while there is another line in the csv
-        //load the new line
-        //split the line by commas into an array of string
-        //use the uid to look up the corresponding student
-        //create a course object
-        /** set the values of the course object to the corresponding elements
-         *  in the string array
-         */
-        //add the course to student's course list
+    //load the new line
+    //split the line by commas into an array of strings
+    //create a new student object
+    /** set the values of the student object to the corresponding elements
+     *  in the string array
+     */
 }
 
-void RecordManager::displayMenu(){
+void RecordManager::loadCourses() {
+    //using the text in defaultCourses.csv
+    //while there is another line in the csv
+    //load the new line
+    //split the line by commas into an array of string
+    //use the uid to look up the corresponding student
+    //create a course object
+    /** set the values of the course object to the corresponding elements
+     *  in the string array
+     */
+    //add the course to student's course list
+}
+
+void RecordManager::displayMenu() {
     //print the table
     cout << "\tWelcome to FLPoly Simple Student Record System.\n"
             "\t-----------------------------------------------\n"
@@ -56,48 +57,104 @@ void RecordManager::displayMenu(){
             "[5] Add a course to a student\n"
             "[6] Delete a course from a student\n"
             "\n"
-            "Enter your selection: ";
+            "Enter your selection:" << endl;
     takeMenuInput();
 }
+
 void RecordManager::takeMenuInput() {
-    uint8_t input = 0;
-    cin >> input;
-    //switch(the input)
-    switch(input) {
+    uint32_t input_int = 0;
+    double input_double = 0;
+    std::string input_string = "";
+    Student search_student(0, 0, 0, 0, 0, "");
+    Course search_course("", "", 0, 0);
+    cin >> input_int;
+    //switch(the input_int)
+    switch (input_int) {
         //case 1: print records
         case 1:
             break;
-        //case 2: print the record for a student
-        case 2:
+        case 2://case 2: print the record for a student
+            cout << "Enter the UID:" << endl;
+            cin >> input_int;
+            search_student.setUid(input_int);
+            cout << list_of_students.getData(search_student) << endl;
             break;
-        //case 3: add a student
-        case 3:
-            //addStudent();
+        case 3://case 3: add a student
+            cout << "Enter the UID:" << endl;
+            cin >> input_int;
+            search_student.setUid(input_int);
+            cout << "Enter the Total Credit Hours:" << endl;
+            cin >> input_int;
+            search_student.setTotal_credit_hours(input_int);
+            cout << "Enter the number of courses:" << endl;
+            cin >> input_int;
+            search_student.setNumber_of_courses(input_int);
+            cout << "Enter the GPA:" << endl;
+            cin >> input_double;
+            search_student.setGpa(input_double);
+            cout << "Enter the age:" << endl;
+            cin >> input_int;
+            search_student.setAge(input_int);
+            cout << "Enter the Name:" << endl;
+            cin >> input_string;
+            search_student.setName(input_string);
+            addStudent(search_student);
             break;
-        //case 4: delete a student
-        case 4:
-            //deleteStudent()
+        case 4://case 4: delete a student
+            cout << "Enter the UID";
+            cin >> input_int;
+            //equality is determined by the UID
+            search_student.setUid(input_int);
+            deleteStudent(search_student);
             break;
-        //case 5: add a course to a student
-        case 5:
-            //addStudent()
+        case 5: //case 5: add a course to a student
+            cout << "Enter the UID:" << endl;
+            cin >> input_int;
+            //equality is determined by the UID
+            search_student.setUid(input_int);
+            cout << "Enter the Course code:" << endl;
+            cin >> input_string;
+            search_course.setCode(input_string);
+            addCourse(search_student,search_course);
             break;
-        //case 6: delete a course from a student
-        case 6:
-            //deleteCourse()
+        case 6://case 6: delete a course from a student
+            cout << "Enter the UID:" << endl;
+            cin >> input_int;
+            //equality is determined by the UID
+            search_student.setUid(input_int);
+            cout << "Enter the Course code:" << endl;
+            cin >> input_string;
+            search_course.setCode(input_string);
+            deleteCourse(search_student,search_course);
             break;
     }
 }
 
-void RecordManager::addStudent(Student student){}
-void RecordManager::deleteStudent(Student student){}
-void RecordManager::deleteCourse(Student student,Course course){}
+void RecordManager::addStudent(Student student) {
+    list_of_students.add(student);
+}
 
-string RecordManager::getSTUDENT_CSV_PATH(){return STUDENT_CSV_PATH;}
-string RecordManager::getCOURSES_CSV_PATH(){return COURSES_CSV_PATH;}
-void RecordManager::setSTUDENT_CSV_PATH(string STUDENT_CSV_PATH){
+void RecordManager::deleteStudent(Student student) {
+    list_of_students.remove(student);
+}
+void RecordManager::addCourse(Student student, Course course) {
+    list_of_students.getData(student)
+            .addCourse(list_of_courses.getData(course));
+}
+
+void RecordManager::deleteCourse(Student student, Course course) {
+    list_of_students.getData(student)
+            .deleteCourse(list_of_courses.getData(course));
+}
+
+string RecordManager::getSTUDENT_CSV_PATH() { return STUDENT_CSV_PATH; }
+
+string RecordManager::getCOURSES_CSV_PATH() { return COURSES_CSV_PATH; }
+
+void RecordManager::setSTUDENT_CSV_PATH(string STUDENT_CSV_PATH) {
     this->STUDENT_CSV_PATH = STUDENT_CSV_PATH;
 }
-void RecordManager::setCOURSES_CSV_PATH(string COURSES_CSV_PATH){
+
+void RecordManager::setCOURSES_CSV_PATH(string COURSES_CSV_PATH) {
     this->COURSES_CSV_PATH = COURSES_CSV_PATH;
 }

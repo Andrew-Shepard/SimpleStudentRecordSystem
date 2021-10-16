@@ -6,9 +6,13 @@
 #define SIMPLESTUDENTRECORDSYSTEM_RECORDMANAGER_H
 
 #include <string>
-
+#include <iostream>
 #include "Student.h"
 #include "Course.h"
+#include "RecordManager.h"
+#include "DoubleLinkedList.h"
+#include "SingleLinkedList.h"
+#include "Records.h"
 
 using namespace std;
 
@@ -24,12 +28,13 @@ class RecordManager {
         void loadStudent();
         void loadCourses();
         void takeMenuInput();
-    public:
-
-        void displayMenu();
         void addStudent(Student student);
         void deleteStudent(Student student);
+        void addCourse(Student student, Course course);
         void deleteCourse(Student student, Course course);
+    public:
+        void displayMenu();
+
 
         string getSTUDENT_CSV_PATH();
         string getCOURSES_CSV_PATH();

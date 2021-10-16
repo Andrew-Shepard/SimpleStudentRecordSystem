@@ -3,17 +3,12 @@
 //
 
 #include "Student.h"
-//Single Linked List of course objects
 
-void Student::addCourse(){
-    /**
-     *
-     */
+void Student::addCourse(Course course){
+    list_of_courses.add(course);
 }
-void Student::deleteCourse(){
-    /**
-     *
-     */
+void Student::deleteCourse(Course course){
+    list_of_courses.remove(course);
 }
 
 ostream& operator<<(ostream& os, const Student& student){

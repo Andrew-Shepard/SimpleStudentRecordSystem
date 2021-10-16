@@ -8,7 +8,8 @@
 #include "Person.h"
 #include <cstdint>
 #include <iostream>
-
+#include "SingleLinkedList.h"
+#include "Course.h"
 using namespace std;
 class Student: public Person{ //NEEDS TO INHERIT FROM PERSON!
     private:
@@ -16,9 +17,12 @@ class Student: public Person{ //NEEDS TO INHERIT FROM PERSON!
         uint32_t number_of_courses = 0;
         uint32_t uid = 0;
         double gpa = 0;
-        //Single linked list of course name courses
+        SingleLinkedList<Course> list_of_courses;
     public:
         friend ostream& operator<<(ostream& os, const Student& records);
+        bool operator == (const Student &student) const {return uid == student.uid;}
+        bool operator != (const Student &student) const {return !(*this==student);}
+
         Student(){}
         Student(uint32_t total_credit_hours, uint32_t number_of_courses,
                 uint32_t uid, double gpa, uint8_t age, std::string name){
@@ -29,8 +33,8 @@ class Student: public Person{ //NEEDS TO INHERIT FROM PERSON!
             this->age = age;
             this->name = name;
         }
-        void addCourse();
-        void deleteCourse();
+        void addCourse(Course course);
+        void deleteCourse(Course course);
 
         void setTotal_credit_hours(uint32_t total_credit_hours);
         void setNumber_of_courses(uint32_t number_of_courses);

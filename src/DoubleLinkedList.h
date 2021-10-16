@@ -21,6 +21,15 @@ public:
         return head;
     }
 
+    T getData(T data){
+        DoubleNode<T> *p;
+        p = head;
+        while (p->getData() != data){
+            p->getNext();
+        }
+        return p->getData();
+    }
+
     void add(T data) {
         if (head != nullptr) {
             DoubleNode<T> *p;

@@ -21,15 +21,17 @@ class Course {
 class SingleLinkedList{
     #*head
 
+    +getData(T data):T
     +add(T data):void
     +delete(T data):void
 }
 class DoubleLinkedList{
     -*tail
-    -uint64_t length
 
+    +getData(T data):T
     +add(T data):void
     +remove(T data):void
+    +getData(T data):T
 }
 class SingleNode{
     -T data
@@ -69,9 +71,10 @@ class RecordManager{
     +displayMenu():void
     -takeMenuInput():void
 
-    +addStudent():void
-    +deleteStudent():void
-    +deleteCourse():void
+    -addCourse():void
+    -addStudent():void
+    -deleteStudent():void
+    -deleteCourse():void
 }
 class Student{
     -uint32_t total_credit_hours
@@ -82,8 +85,8 @@ class Student{
 
     +Student()
     +Student(uint32_t total_credit_hours, uint32_t number_of_courses, uint32_t uid, double gpa)
-    +addCourse():void
-    +deleteCourse():void
+    +addCourse(Course course):void
+    +deleteCourse(Course course):void
 }
 class Records{
     -uint32_t number_of_students

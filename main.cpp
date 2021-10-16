@@ -5,18 +5,13 @@
 
 int main() {
     RecordManager recordManager;
-    //Student student(1,2,3,4.0,12,"buh");
-    //Person person("name lol!",16);
-    //SingleLinkedList<int16_t> singleLinkedList;
-    DoubleLinkedList<int16_t> doubleLinkedList;
-    doubleLinkedList.add(16);
-    doubleLinkedList.add(4);
-    doubleLinkedList.add(2);
-    doubleLinkedList.add(2);
-    //doubleLinkedList.add(2);
+    uint32_t continue_ = 1;
 
-    cout << doubleLinkedList;
-    //recordManager.displayMenu();
+    while (continue_ == 1) {
+        recordManager.displayMenu();
+        cout << "Continue? Type 1 " << endl;
+        cin >> continue_;
+    }
 
     return 0;
 }

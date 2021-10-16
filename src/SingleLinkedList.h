@@ -17,6 +17,16 @@ public:
     SingleNode<T> getHead(){
         return head;
     }
+
+    T getData(T data){
+        SingleNode<T> *p;
+        p = head;
+        while (p->getData() != data){
+            p->getNext();
+        }
+        return p->getData();
+    }
+
     void add(T data) {
         if (head != nullptr) {
             SingleNode<T> *p;
