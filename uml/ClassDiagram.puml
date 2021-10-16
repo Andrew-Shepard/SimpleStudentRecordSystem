@@ -29,7 +29,7 @@ class DoubleLinkedList{
     -uint64_t length
 
     +add(T data):void
-    +delete(T data):void
+    +remove(T data):void
 }
 class SingleNode{
     -T data

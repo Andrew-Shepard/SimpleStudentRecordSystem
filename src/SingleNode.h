@@ -5,16 +5,23 @@
 #ifndef SIMPLESTUDENTRECORDSYSTEM_SINGLENODE_H
 #define SIMPLESTUDENTRECORDSYSTEM_SINGLENODE_H
 
+#include <sstream>
+
 template<typename T>
-class SingleNode {
+class DoubleNode {
 protected:
     T data;
-    SingleNode *next = nullptr;
+    DoubleNode *next = nullptr;
 public:
-    SingleNode(){
+    DoubleNode() {
 
     }
-    SingleNode(T data, SingleNode *next){
+
+    DoubleNode(T data) {
+        this->data = data;
+    }
+
+    DoubleNode(T data, DoubleNode *next) {
         this->data = data;
         this->next = next;
     }
@@ -23,16 +30,23 @@ public:
         return data;
     }
 
-    void setData(T data){
-        this->data = data; //difference from example
+    void setData(T data) {
+        DoubleNode::data = data;
     }
 
-    SingleNode *getNext() const {
+    DoubleNode *getNext() const {
         return next;
     }
 
-    void setNext(SingleNode *next){
-        this->next = next; //difference from example
+    std::string getNextasString() const {
+        std::ostringstream oss;
+        oss  << next;
+        std::string get_next = oss.str();
+        return get_next;
+    }
+
+    void setNext(DoubleNode *next) {
+        DoubleNode::next = next;
     }
 };
 
