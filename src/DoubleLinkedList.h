@@ -1,41 +1,63 @@
 //
-// Created by andre on 10/12/2021.
+// Created by andre on 10/16/2021.
 //
-#include "SingleNode.h"
-#include <iostream>
-#ifndef SIMPLESTUDENTRECORDSYSTEM_SINGLELINKEDLIST_H
-#define SIMPLESTUDENTRECORDSYSTEM_SINGLELINKEDLIST_H
+
+
+#ifndef SIMPLESTUDENTRECORDSYSTEM_DOUBLELINKEDLIST_H
+#define SIMPLESTUDENTRECORDSYSTEM_DOUBLELINKEDLIST_H
+
+#include "DoubleNode.h"
 
 template<typename T>
-class SingleLinkedList {
+class DoubleLinkedList {
 protected:
-    SingleNode<T> *head = nullptr;
+    DoubleNode<T> *head = nullptr;
 public:
-    SingleLinkedList() {
+    DoubleLinkedList() {
 
     }
-    SingleNode<T> getHead(){
+
+    DoubleNode<T> getHead() {
         return head;
     }
+
     void add(T data) {
         if (head != nullptr) {
-            SingleNode<T> *p;
+            DoubleNode<T> *p;
             p = head;
-            //Start iterating at the head until the end
-            while (p->getNext() != nullptr) {
-
+            //special case for a list of length one, to avoid out of bounds when using two getnexts
+            if (p->getNext() == nullptr) {
+                p->setNext(new DoubleNode<T>(data));
+                p = p->getNext();
+                p->setPrevious(head);
+                return;
+            }
+            //While the next object is not the last one
+            while (p->getNext()->getNext() != nullptr) {
                 p = p->getNext();
             }
-            p->setNext(new SingleNode<T>(data));
+            //Record the pointer before the match
+            DoubleNode<T> *temp = p;
+            //move to the match
+            p = p->getNext();
+            //link to the previous pointer
+            p->setPrevious(temp);
+            //Set the next pointer to the new entry
+            p->setNext(new DoubleNode<T>(data));
+            //record the pointer before the new entry
+            temp = p;
+            //move to the new entry
+            p = p->getNext();
+            //link the new entry to the previous entry
+            p->setPrevious(temp);
         } else {
-            head = new SingleNode<T>(data);
+            head = new DoubleNode<T>(data);
         }
     }
 
     void remove(T data) {
-
         //Iterate through the list sequentially until the data is matched
-        SingleNode<T> *p;
+        DoubleNode<T> *p;
         p = head;
         if (head->getData() != data) {
             /**
@@ -62,24 +84,25 @@ public:
         //p is the node before the match UNLESS it is the head
         if (p->getNext()->getNext() != nullptr) {//if the match is in the body
 
-            SingleNode<T> *temp_pointer = p->getNext();
+            DoubleNode<T> *temp_pointer = p->getNext();
             //link p to the node after the match
             p->setNext(temp_pointer->getNext());
             delete temp_pointer;
         } else {//if the match is at the end
-            SingleNode<T> *temp_pointer = p->getNext();
+            DoubleNode<T> *temp_pointer = p->getNext();
             delete temp_pointer;
             p->setNext(nullptr);
         }
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const SingleLinkedList& singleLinkedList){
-        SingleNode<T> *p;
-        p = singleLinkedList.head;
+    friend std::ostream &operator<<(std::ostream &os, const DoubleLinkedList &doubleLinkedList) {
+        DoubleNode<T> *p;
+        p = doubleLinkedList.head;
         std::string print_statement = "";
-        while (p != nullptr){
+        while (p != nullptr) {
             print_statement += "\nData: " + to_string(p->getData())
-                    +"\nPointer: " + p->getNextasString();
+                               + "\nNext Pointer: " + p->getNextasString()
+                               + "\nPrevious Pointer: " + p->getPreviousasString();
             p = p->getNext();
         }
         os << print_statement;
@@ -88,9 +111,4 @@ public:
 };
 
 
-
-
-
-
-
-#endif //SIMPLESTUDENTRECORDSYSTEM_SINGLELINKEDLIST_H
+#endif //SIMPLESTUDENTRECORDSYSTEM_DOUBLELINKEDLIST_H

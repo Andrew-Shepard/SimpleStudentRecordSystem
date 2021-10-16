@@ -37,8 +37,9 @@ class SingleNode{
 
     +getData():T
     +setData():T
-    +getNext(SingleNode *next)
-    +setNext(SingleNode *next)
+    +*getNext(SingleNode *next)
+    +*setNext(SingleNode *next)
+    +getNextasString():std::string
 }
 class DoubleNode{
     -DoubleNode *previous
@@ -49,6 +50,8 @@ class DoubleNode{
     +setNext(DoubleNode *next)
     +getPrevious(DoubleNode *previous)
     +setPrevious(DoubleNode *previous)
+    +getNextasString():std::string
+    +getPreviousasString():std::string
 }
 class RecordManager{
     -String STUDENT_CSV_PATH

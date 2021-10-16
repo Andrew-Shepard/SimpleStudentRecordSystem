@@ -7,6 +7,7 @@
 
 #include <sstream>
 #include <iostream>
+
 template<typename T>
 class DoubleNode {
 protected:
@@ -27,6 +28,12 @@ public:
         this->next = next;
     }
 
+    DoubleNode(T data, DoubleNode *next, DoubleNode *previous) {
+        this->data = data;
+        this->next = next;
+        this->previous = previous;
+    }
+
     T getData() const {
         return data;
     }
@@ -39,19 +46,39 @@ public:
         return next;
     }
 
-    std::string getNextasString() const {
-        std::ostringstream oss;
-        oss  << next;
-        std::string get_next = oss.str();
-        return get_next;
+    DoubleNode *getPrevious() const {
+        return previous;
     }
 
     void setNext(DoubleNode *next) {
         DoubleNode::next = next;
     }
 
-    void setPrevious(DoubleNode *previous){
+    void setPrevious(DoubleNode *previous) {
+        DoubleNode::previous = previous;
+    }
 
+    std::string getNextasString() const {
+        std::ostringstream oss;
+        oss << next;
+        std::string get_next = oss.str();
+        return get_next;
+    }
+
+    std::string getPreviousasString() const {
+        std::ostringstream oss;
+        oss << previous;
+        std::string get_next = oss.str();
+        return get_next;
+    }
+
+    friend std::ostream &operator<<(std::ostream &os, const DoubleNode &doubleNode) {
+        std::string print_statement = "";
+        print_statement += "\nData: " + doubleNode.getData()
+                           + "\nNext Pointer: " + doubleNode.getNextasString()
+                           + "\nPrevious Pointer: " + doubleNode.getPreviousasString();
+        os << print_statement;
+        return os;
     }
 };
 

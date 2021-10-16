@@ -8,20 +8,20 @@
 #include <sstream>
 
 template<typename T>
-class DoubleNode {
+class SingleNode {
 protected:
     T data;
-    DoubleNode *next = nullptr;
+    SingleNode *next = nullptr;
 public:
-    DoubleNode() {
+    SingleNode() {
 
     }
 
-    DoubleNode(T data) {
+    SingleNode(T data) {
         this->data = data;
     }
 
-    DoubleNode(T data, DoubleNode *next) {
+    SingleNode(T data, SingleNode *next) {
         this->data = data;
         this->next = next;
     }
@@ -31,10 +31,10 @@ public:
     }
 
     void setData(T data) {
-        DoubleNode::data = data;
+        SingleNode::data = data;
     }
 
-    DoubleNode *getNext() const {
+    SingleNode *getNext() const {
         return next;
     }
 
@@ -45,8 +45,15 @@ public:
         return get_next;
     }
 
-    void setNext(DoubleNode *next) {
-        DoubleNode::next = next;
+    void setNext(SingleNode *next) {
+        SingleNode::next = next;
+    }
+    friend std::ostream &operator<<(std::ostream &os, const SingleNode &singleNode) {
+        std::string print_statement = "";
+        print_statement += "\nData: " + singleNode.getData()
+                           + "\nNext Pointer: " + singleNode.getNextasString();
+        os << print_statement;
+        return os;
     }
 };
 
