@@ -24,8 +24,8 @@ class Student: public Person{ //NEEDS TO INHERIT FROM PERSON!
         bool operator != (const Student &student) const {return !(*this==student);}
 
         Student(){}
-        Student(uint32_t total_credit_hours, uint32_t number_of_courses,
-                uint32_t uid, double gpa, uint8_t age, std::string name){
+        Student(uint32_t uid, std::string name, uint8_t age, uint32_t total_credit_hours,
+            uint32_t number_of_courses, double gpa){
             this->total_credit_hours = total_credit_hours;
             this->number_of_courses = number_of_courses;
             this->uid = uid;

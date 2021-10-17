@@ -7,6 +7,7 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 #include "Student.h"
 #include "Course.h"
 #include "RecordManager.h"
@@ -18,13 +19,13 @@ using namespace std;
 
 class RecordManager {
     private:
-        string STUDENT_CSV_PATH = "default.csv";
-        string COURSES_CSV_PATH = "coursesDefault.csv";
+        string STUDENT_CSV_PATH = "../input/default.csv";
+        string COURSES_CSV_PATH = "../input/coursesDefault.csv";
         //Double linked list of students
         //Single Linked List of courses (Contains uid for student)
 
         bool isCSV(string path);
-        void load();
+
         void loadStudent();
         void loadCourses();
         void takeMenuInput();
@@ -34,7 +35,7 @@ class RecordManager {
         void deleteCourse(Student student, Course course);
     public:
         void displayMenu();
-
+        void load();
 
         string getSTUDENT_CSV_PATH();
         string getCOURSES_CSV_PATH();
@@ -44,6 +45,7 @@ class RecordManager {
         //get singlelist
         //set doublelist
         //set singlelist
+
 
 };
 

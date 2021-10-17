@@ -5,7 +5,7 @@
 #include "Records.h"
 void Records::updateAverage_gpa(double student_average_GPA){
     //This function assumes that number_of_students is changed before it is run
-    average_GPA = (student_average_GPA+number_of_students*average_GPA)/number_of_students;
+    average_GPA = (student_average_GPA+(number_of_students-1)*average_GPA)/number_of_students;
 }
 void Records::addStudent(double student_average_GPA){
     //Increment number of students then update average gpa

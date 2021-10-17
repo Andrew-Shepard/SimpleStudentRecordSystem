@@ -7,6 +7,7 @@
 
 DoubleLinkedList<Student> list_of_students;
 SingleLinkedList<Course> list_of_courses;
+Records records;
 
 bool RecordManager::isCSV(string path) {
     //if the path ends in .csv return true (1) else false (0)
@@ -17,23 +18,45 @@ bool RecordManager::isCSV(string path) {
 }
 
 void RecordManager::load() {
-    //loadStudent
+    loadStudent();
     //loadCourses
 }
 
 void RecordManager::loadStudent() {
     //using the text in default.csv
+    ifstream course_file;
+    std::string delimiter = ",";
+    size_t delimiter_pos = 0;
+    course_file.open(STUDENT_CSV_PATH);
     //while there is another line in the csv
     //load the new line
-    //split the line by commas into an array of strings
-    //create a new student object
-    /** set the values of the student object to the corresponding elements
-     *  in the string array
-     */
+    for( std::string line; getline( course_file, line ); )
+    {
+        string line_contents[6] = {}; //6 attributes in a Student
+        for(int i = 0; i<6; i++){
+            //split the line by commas into an array of strings
+            if((delimiter_pos = line.find(delimiter)) != std::string::npos){
+                //find returns the location of the delimiter if it exists or returns npos
+                line_contents[i] = line.substr(0,delimiter_pos);
+                line.erase(0,delimiter_pos+1);
+            } else { //end of line case where , is not the delimiter
+                line_contents[i] = line.substr(0,line.length());
+            }
+        }
+        //create a new student object
+        /** set the values of the student object to the corresponding elements
+        *  in the string array
+        */
+        Student new_student(0,line_contents[1],stoi(line_contents[2]),stoi(line_contents[3]),
+            stoi(line_contents[4]), stod(line_contents[5]));
+        addStudent(new_student);
+    }
 }
 
 void RecordManager::loadCourses() {
     //using the text in defaultCourses.csv
+    ifstream course_file;
+    course_file.open(COURSES_CSV_PATH);
     //while there is another line in the csv
     //load the new line
     //split the line by commas into an array of string
@@ -65,13 +88,14 @@ void RecordManager::takeMenuInput() {
     uint32_t input_int = 0;
     double input_double = 0;
     std::string input_string = "";
-    Student search_student(0, 0, 0, 0, 0, "");
+    Student search_student(0,"",0,0,0,0);
     Course search_course("", "", 0, 0);
     cin >> input_int;
     //switch(the input_int)
     switch (input_int) {
         //case 1: print records
         case 1:
+            cout << records << endl;
             break;
         case 2://case 2: print the record for a student
             cout << "Enter the UID:" << endl;
@@ -132,10 +156,12 @@ void RecordManager::takeMenuInput() {
 
 void RecordManager::addStudent(Student student) {
     list_of_students.add(student);
+    records.addStudent(student.getGpa());
 }
 
 void RecordManager::deleteStudent(Student student) {
     list_of_students.remove(student);
+    records.removeStudent(student.getGpa());
 }
 void RecordManager::addCourse(Student student, Course course) {
     list_of_students.getData(student)
