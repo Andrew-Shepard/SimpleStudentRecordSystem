@@ -19,18 +19,18 @@ bool RecordManager::isCSV(string path) {
 
 void RecordManager::load() {
     loadStudent();
-    //loadCourses
+    loadCourses();
 }
 
 void RecordManager::loadStudent() {
     //using the text in default.csv
-    ifstream course_file;
+    ifstream student_file;
     std::string delimiter = ",";
     size_t delimiter_pos = 0;
-    course_file.open(STUDENT_CSV_PATH);
+    student_file.open(STUDENT_CSV_PATH);
     //while there is another line in the csv
     //load the new line
-    for( std::string line; getline( course_file, line ); )
+    for( std::string line; getline(student_file, line ); )
     {
         string line_contents[6] = {}; //6 attributes in a Student
         for(int i = 0; i<6; i++){
@@ -47,25 +47,47 @@ void RecordManager::loadStudent() {
         /** set the values of the student object to the corresponding elements
         *  in the string array
         */
-        Student new_student(0,line_contents[1],stoi(line_contents[2]),stoi(line_contents[3]),
+        Student new_student(stoi(line_contents[0]),line_contents[1],stoi(line_contents[2]),stoi(line_contents[3]),
             stoi(line_contents[4]), stod(line_contents[5]));
         addStudent(new_student);
+
     }
+    student_file.close();
 }
 
 void RecordManager::loadCourses() {
     //using the text in defaultCourses.csv
+    //Courses are assumed to always have a valid student
     ifstream course_file;
+    std::string delimiter = ",";
+    size_t delimiter_pos = 0;
     course_file.open(COURSES_CSV_PATH);
+    Student search_student(0,"",0,0,0,0);
     //while there is another line in the csv
-    //load the new line
-    //split the line by commas into an array of string
-    //use the uid to look up the corresponding student
-    //create a course object
-    /** set the values of the course object to the corresponding elements
-     *  in the string array
-     */
-    //add the course to student's course list
+    for( std::string line; getline( course_file, line ); ){
+        string line_contents[5] = {}; //4 attributes in a Course + UID
+        for(int i = 0; i<5; i++){
+
+            //split the line by commas into an array of strings
+            if((delimiter_pos = line.find(delimiter)) != std::string::npos){
+                //find returns the location of the delimiter if it exists or returns npos
+                line_contents[i] = line.substr(0,delimiter_pos);
+                line.erase(0,delimiter_pos+1);
+            } else { //end of line case where , is not the delimiter
+                line_contents[i] = line.substr(0,line.length());
+            }
+            //create a course object
+            /** set the values of the course object to the corresponding elements
+             *  in the string array stod(line_contents[4])
+             */
+        }
+        Course new_course(line_contents[1],line_contents[2],stoi(line_contents[3]),
+                          stoi(line_contents[4]));
+        list_of_courses.add(new_course);
+        //add the course to student's course list
+        search_student.setUid(stoi(line_contents[0]));
+        list_of_students.getData(search_student).addCourse(new_course);
+    }
 }
 
 void RecordManager::displayMenu() {
@@ -136,10 +158,13 @@ void RecordManager::takeMenuInput() {
             cin >> input_int;
             //equality is determined by the UID
             search_student.setUid(input_int);
+            cout << list_of_students.getData(search_student) << endl;
             cout << "Enter the Course code:" << endl;
             cin >> input_string;
             search_course.setCode(input_string);
+            cout << list_of_courses.getData(search_course) << endl;
             addCourse(search_student,search_course);
+            cout << "added course" << endl;
             break;
         case 6://case 6: delete a course from a student
             cout << "Enter the UID:" << endl;

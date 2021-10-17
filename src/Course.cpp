@@ -9,6 +9,7 @@ void Course::setAll(string code, string title, double grade, uint8_t credit_hour
     this->grade = grade;
     this->credit_hour = credit_hour;
 }
+
 ostream& operator<<(ostream& os, const Course& course){
     os << "Code: " << course.code << "\nTitle: " << course.title
         << "\nGrade: " << course.grade << "\nCredit Hour: " << to_string(course.credit_hour);

@@ -24,10 +24,15 @@ public:
     T getData(T data){
         DoubleNode<T> *p;
         p = head;
-        while (p->getData() != data){
-            p->getNext();
+        while (p->getData() != data && p->getNext() != nullptr){
+            p = p->getNext();
         }
-        return p->getData();
+        if(p->getData() == data){
+            return p->getData();
+        }else{
+            cout << "Double member not found in list" << endl;
+            abort();
+        }
     }
 
     void add(T data) {
@@ -109,9 +114,9 @@ public:
         p = doubleLinkedList.head;
         std::string print_statement = "";
         while (p != nullptr) {
-            print_statement += "\nData: " + to_string(p->getData())
-                               + "\nNext Pointer: " + p->getNextasString()
-                               + "\nPrevious Pointer: " + p->getPreviousasString();
+            os << "\nData: " << p->getData()
+                               << "\nNext Pointer: " << p->getNextasString()
+                               << "\nPrevious Pointer: " << p->getPreviousasString();
             p = p->getNext();
         }
         os << print_statement;

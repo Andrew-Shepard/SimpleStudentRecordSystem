@@ -21,10 +21,15 @@ public:
     T getData(T data){
         SingleNode<T> *p;
         p = head;
-        while (p->getData() != data){
-            p->getNext();
+        while (p->getData() != data && p->getNext() != nullptr){
+            p = p->getNext();
         }
-        return p->getData();
+        if(p->getData() == data){
+            return p->getData();
+        }else{
+            cout << "Single member not found in list" << endl;
+            abort();
+        }
     }
 
     void add(T data) {
@@ -88,8 +93,8 @@ public:
         p = singleLinkedList.head;
         std::string print_statement = "";
         while (p != nullptr){
-            print_statement += "\nData: " + to_string(p->getData())
-                    +"\nPointer: " + p->getNextasString();
+            os << "\nData: " << p->getData()
+               << "\nNext Pointer: " << p->getNextasString();
             p = p->getNext();
         }
         os << print_statement;

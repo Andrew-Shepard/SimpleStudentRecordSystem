@@ -21,7 +21,7 @@ class Course {
         bool operator == (const Course &course) const {return code == course.code;}
         bool operator != (const Course &course) const {return !(*this==course);}
         Course(){}
-        Course(string code, string title, double grade, uint8_t credit_hour){
+        Course(string code, string title, uint8_t credit_hour,double grade){
             this->code = code;
             this->title = title;
             this->grade = grade;

@@ -6,9 +6,12 @@
 
 void Student::addCourse(Course course){
     list_of_courses.add(course);
+    this->number_of_courses += 1;
+    cout << list_of_courses << endl;
 }
 void Student::deleteCourse(Course course){
     list_of_courses.remove(course);
+    this->number_of_courses -= 1;
 }
 
 ostream& operator<<(ostream& os, const Student& student){
