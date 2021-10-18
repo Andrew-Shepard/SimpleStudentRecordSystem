@@ -67,7 +67,6 @@ void RecordManager::loadCourses() {
     for( std::string line; getline( course_file, line ); ){
         string line_contents[5] = {}; //4 attributes in a Course + UID
         for(int i = 0; i<5; i++){
-
             //split the line by commas into an array of strings
             if((delimiter_pos = line.find(delimiter)) != std::string::npos){
                 //find returns the location of the delimiter if it exists or returns npos
@@ -86,7 +85,8 @@ void RecordManager::loadCourses() {
         list_of_courses.add(new_course);
         //add the course to student's course list
         search_student.setUid(stoi(line_contents[0]));
-        list_of_students.getData(search_student).addCourse(new_course);
+        /**list_of_students.search(search_student)->getData();**/
+
     }
 }
 
@@ -164,7 +164,6 @@ void RecordManager::takeMenuInput() {
             search_course.setCode(input_string);
             cout << list_of_courses.getData(search_course) << endl;
             addCourse(search_student,search_course);
-            cout << "added course" << endl;
             break;
         case 6://case 6: delete a course from a student
             cout << "Enter the UID:" << endl;
@@ -189,8 +188,11 @@ void RecordManager::deleteStudent(Student student) {
     records.removeStudent(student.getGpa());
 }
 void RecordManager::addCourse(Student student, Course course) {
+    cout <<"----------"<< endl;
+    cout << student.getUid() << endl;
+    cout << course << endl;
     list_of_students.getData(student)
-            .addCourse(list_of_courses.getData(course));
+            .addCourse(Course(list_of_courses.getData(course)));
 }
 
 void RecordManager::deleteCourse(Student student, Course course) {

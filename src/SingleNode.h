@@ -26,6 +26,9 @@ public:
         this->next = next;
     }
 
+    T& getData() {
+        return data;
+    }
     T getData() const {
         return data;
     }
@@ -46,13 +49,11 @@ public:
     }
 
     void setNext(SingleNode *next) {
-        SingleNode::next = next;
+        this->next = next;
     }
     friend std::ostream &operator<<(std::ostream &os, const SingleNode &singleNode) {
-        std::string print_statement = "";
-        print_statement += "\nData: " + singleNode.getData()
-                           + "\nNext Pointer: " + singleNode.getNextasString();
-        os << print_statement;
+        os << "\nData: " << singleNode.getData()
+                           << "\nNext Pointer: " << singleNode.getNextasString();
         return os;
     }
 };

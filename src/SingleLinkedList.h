@@ -32,6 +32,16 @@ public:
         }
     }
 
+    SingleNode<T> *search(T data) {
+        SingleNode<T> *p = head;
+        while (p->getData() != data && p->getNext() != nullptr){
+            p = p->getNext();
+        }
+        if(p->getData() == data){
+            return p;
+        }
+    }
+
     void add(T data) {
         if (head != nullptr) {
             SingleNode<T> *p;
@@ -88,7 +98,7 @@ public:
         }
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const SingleLinkedList& singleLinkedList){
+    friend std::ostream& operator<<(std::ostream& os, const SingleLinkedList<T>& singleLinkedList){
         SingleNode<T> *p;
         p = singleLinkedList.head;
         std::string print_statement = "";
@@ -96,6 +106,7 @@ public:
             os << "\nData: " << p->getData()
                << "\nNext Pointer: " << p->getNextasString();
             p = p->getNext();
+            cout << "ok------" << endl;
         }
         os << print_statement;
         return os;

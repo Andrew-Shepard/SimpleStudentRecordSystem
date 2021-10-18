@@ -74,11 +74,10 @@ public:
     }
 
     friend std::ostream &operator<<(std::ostream &os, const DoubleNode &doubleNode) {
-        std::string print_statement = "";
-        print_statement += "\nData: " + doubleNode.getData()
-                           + "\nNext Pointer: " + doubleNode.getNextasString()
-                           + "\nPrevious Pointer: " + doubleNode.getPreviousasString();
-        os << print_statement;
+        os <<
+            "\nNext Pointer: " << doubleNode.getNextasString()
+            << "\nPrevious Pointer: " << doubleNode.getPreviousasString()
+            <<"\nData: " << doubleNode.getData();
         return os;
     }
 };

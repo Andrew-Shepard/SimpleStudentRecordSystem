@@ -45,6 +45,7 @@ class Student: public Person{ //NEEDS TO INHERIT FROM PERSON!
         uint32_t getNumber_of_courses();
         uint32_t getUid();
         double getGpa();
+        SingleLinkedList<Course> getCourses();
 
 
 };

@@ -32,3 +32,4 @@ uint32_t Student::getTotal_credit_hours(){return total_credit_hours;}
 uint32_t Student::getNumber_of_courses(){return number_of_courses;}
 uint32_t Student::getUid(){return uid;}
 double Student::getGpa(){return gpa;}
+SingleLinkedList<Course> Student::getCourses(){return list_of_courses;}

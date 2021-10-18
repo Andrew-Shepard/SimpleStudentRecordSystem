@@ -109,6 +109,16 @@ public:
         }
     }
 
+    DoubleNode<T> *search(T data) {
+        DoubleNode<T> *p = head;
+        while (p->getData() != data && p->getNext() != nullptr){
+            p = p->getNext();
+        }
+        if(p->getData() == data){
+            return p;
+        }
+    }
+
     friend std::ostream &operator<<(std::ostream &os, const DoubleLinkedList &doubleLinkedList) {
         DoubleNode<T> *p;
         p = doubleLinkedList.head;
