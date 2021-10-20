@@ -21,7 +21,21 @@ public:
         return head;
     }
 
-    T getData(T data){
+    T getData(T data) const{
+        DoubleNode<T> *p;
+        p = head;
+        while (p->getData() != data && p->getNext() != nullptr){
+            p = p->getNext();
+        }
+        if(p->getData() == data){
+            return p->getData();
+        }else{
+            cout << "Double member not found in list" << endl;
+            abort();
+        }
+    }
+
+    T& getData(T data){
         DoubleNode<T> *p;
         p = head;
         while (p->getData() != data && p->getNext() != nullptr){

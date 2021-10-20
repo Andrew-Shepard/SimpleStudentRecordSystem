@@ -11,7 +11,7 @@
 #include "SingleLinkedList.h"
 #include "Course.h"
 using namespace std;
-class Student: public Person{ //NEEDS TO INHERIT FROM PERSON!
+class Student: public Person{
     private:
         uint32_t total_credit_hours = 0;
         uint32_t number_of_courses = 0;
@@ -46,8 +46,6 @@ class Student: public Person{ //NEEDS TO INHERIT FROM PERSON!
         uint32_t getUid();
         double getGpa();
         SingleLinkedList<Course> getCourses();
-
-
 };
 
 

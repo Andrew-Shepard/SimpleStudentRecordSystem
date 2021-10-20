@@ -85,7 +85,7 @@ void RecordManager::loadCourses() {
         list_of_courses.add(new_course);
         //add the course to student's course list
         search_student.setUid(stoi(line_contents[0]));
-        /**list_of_students.search(search_student)->getData();**/
+        addCourse(search_student,new_course);
 
     }
 }
@@ -188,9 +188,6 @@ void RecordManager::deleteStudent(Student student) {
     records.removeStudent(student.getGpa());
 }
 void RecordManager::addCourse(Student student, Course course) {
-    cout <<"----------"<< endl;
-    cout << student.getUid() << endl;
-    cout << course << endl;
     list_of_students.getData(student)
             .addCourse(Course(list_of_courses.getData(course)));
 }

@@ -29,6 +29,7 @@ public:
     T& getData() {
         return data;
     }
+
     T getData() const {
         return data;
     }

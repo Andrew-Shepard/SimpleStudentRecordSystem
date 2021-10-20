@@ -18,7 +18,21 @@ public:
         return head;
     }
 
-    T getData(T data){
+    T getData(T data) const{
+        SingleNode<T> *p;
+        p = head;
+        while (p->getData() != data && p->getNext() != nullptr){
+            p = p->getNext();
+        }
+        if(p->getData() == data){
+            return p->getData();
+        }else{
+            cout << "Single member not found in list" << endl;
+            abort();
+        }
+    }
+
+    T& getData(T data){
         SingleNode<T> *p;
         p = head;
         while (p->getData() != data && p->getNext() != nullptr){
@@ -48,7 +62,6 @@ public:
             p = head;
             //Start iterating at the head until the end
             while (p->getNext() != nullptr) {
-
                 p = p->getNext();
             }
             p->setNext(new SingleNode<T>(data));
@@ -101,14 +114,11 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const SingleLinkedList<T>& singleLinkedList){
         SingleNode<T> *p;
         p = singleLinkedList.head;
-        std::string print_statement = "";
         while (p != nullptr){
             os << "\nData: " << p->getData()
                << "\nNext Pointer: " << p->getNextasString();
             p = p->getNext();
-            cout << "ok------" << endl;
         }
-        os << print_statement;
         return os;
     }
 };

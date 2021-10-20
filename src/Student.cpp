@@ -7,7 +7,7 @@
 void Student::addCourse(Course course){
     list_of_courses.add(course);
     this->number_of_courses += 1;
-    cout << list_of_courses << endl;
+    //cout << name << endl << list_of_courses << endl;
 }
 void Student::deleteCourse(Course course){
     list_of_courses.remove(course);
@@ -19,7 +19,8 @@ ostream& operator<<(ostream& os, const Student& student){
     os << "Name: "<< student.name << "\nAge: " << to_string(student.age)
         << "\nTotal credit hours: " << student.total_credit_hours
             << "\nNumber of Courses: "<< student.number_of_courses
-                << "\nUID: "<< student.uid << "\nGPA :"<< student.gpa;
+                << "\nUID: "<< student.uid << "\nGPA :"<< student.gpa
+                    << "\nList of Courses:\n" << student.list_of_courses;
     return os;
 }
 

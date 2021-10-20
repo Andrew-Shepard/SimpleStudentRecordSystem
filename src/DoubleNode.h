@@ -39,6 +39,10 @@ public:
         return data;
     }
 
+    T& getData(){
+        return data;
+    }
+
     void setData(T data) {
         DoubleNode::data = data;
     }
