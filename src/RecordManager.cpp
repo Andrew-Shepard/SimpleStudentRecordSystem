@@ -86,7 +86,6 @@ void RecordManager::loadCourses() {
         //add the course to student's course list
         search_student.setUid(stoi(line_contents[0]));
         addCourse(search_student,new_course);
-
     }
 }
 
@@ -118,6 +117,7 @@ void RecordManager::takeMenuInput() {
         //case 1: print records
         case 1:
             cout << records << endl;
+            cout << list_of_students << endl;
             break;
         case 2://case 2: print the record for a student
             cout << "Enter the UID:" << endl;
@@ -158,11 +158,9 @@ void RecordManager::takeMenuInput() {
             cin >> input_int;
             //equality is determined by the UID
             search_student.setUid(input_int);
-            cout << list_of_students.getData(search_student) << endl;
             cout << "Enter the Course code:" << endl;
             cin >> input_string;
             search_course.setCode(input_string);
-            cout << list_of_courses.getData(search_course) << endl;
             addCourse(search_student,search_course);
             break;
         case 6://case 6: delete a course from a student
@@ -194,7 +192,7 @@ void RecordManager::addCourse(Student student, Course course) {
 
 void RecordManager::deleteCourse(Student student, Course course) {
     list_of_students.getData(student)
-            .deleteCourse(list_of_courses.getData(course));
+            .deleteCourse(Course(list_of_courses.getData(course)));
 }
 
 string RecordManager::getSTUDENT_CSV_PATH() { return STUDENT_CSV_PATH; }

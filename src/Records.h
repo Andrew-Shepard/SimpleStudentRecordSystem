@@ -8,6 +8,8 @@
 
 #include <cstdint>
 #include <iostream>
+#include "DoubleLinkedList.h"
+#include "Student.h"
 
 using namespace std;
 
@@ -15,7 +17,7 @@ class Records {
 private:
     uint32_t number_of_students = 0;
     double average_GPA = 0;
-
+    DoubleLinkedList<Student> list_of_students;
     //Double linked list of students named students
     void updateAverage_gpa(double student_average_GPA);
     //friend keyword allows for the class to access the private variables
@@ -33,11 +35,15 @@ public:
 
     void removeStudent(double student_average_GPA);
 
+    void setList_of_students(DoubleLinkedList<Student> list_of_students);
+
     void setNumber_of_students(uint32_t number_of_students);
 
     void setAverage_GPA(double average_GPA);
 
     double getAverage_GPA();
+
+    DoubleLinkedList<Student> getList_of_students();
 
     uint32_t getNumber_of_students();
 };

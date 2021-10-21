@@ -12,6 +12,5 @@ int main() {
         cout << "Continue? Type 1 " << endl;
         cin >> continue_;
     }
-
     return 0;
 }

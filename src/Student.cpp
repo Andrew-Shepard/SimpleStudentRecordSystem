@@ -17,9 +17,9 @@ void Student::deleteCourse(Course course){
 ostream& operator<<(ostream& os, const Student& student){
     //8bits print as ascii characters sometimes lol! tostring.
     os << "Name: "<< student.name << "\nAge: " << to_string(student.age)
-        << "\nTotal credit hours: " << student.total_credit_hours
-            << "\nNumber of Courses: "<< student.number_of_courses
-                << "\nUID: "<< student.uid << "\nGPA :"<< student.gpa
+        << "\nTotal credit hours: " << to_string(student.total_credit_hours)
+            << "\nNumber of Courses: " << to_string(student.number_of_courses)
+                << "\nUID: "<< to_string(student.uid) << "\nGPA :"<< to_string(student.gpa)
                     << "\nList of Courses:\n" << student.list_of_courses;
     return os;
 }

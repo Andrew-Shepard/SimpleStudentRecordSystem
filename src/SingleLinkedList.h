@@ -71,7 +71,6 @@ public:
     }
 
     void remove(T data) {
-
         //Iterate through the list sequentially until the data is matched
         SingleNode<T> *p;
         p = head;
@@ -120,6 +119,15 @@ public:
             p = p->getNext();
         }
         return os;
+    }
+
+    virtual ~SingleLinkedList() {
+        SingleNode<T> *p = nullptr;
+        while (head) {
+            p = head;
+            delete p;
+            head = head->getNext();
+        }
     }
 };
 

@@ -12,8 +12,8 @@
 using namespace std;
 class Course {
     private:
-        std::string code;
-        std::string title;
+        std::string code = "";
+        std::string title = "";
         double grade = 0;
         uint8_t credit_hour = 0;
     public:
@@ -32,6 +32,10 @@ class Course {
         void setTitle(string title);
         void setGrade(double grade);
         void setCredit_hour(uint8_t credit_hour);
+        std::string getCode();
+        std::string getTitle();
+        double getGrade();
+        uint8_t getCredit_hour();
 };
 
 

@@ -21,7 +21,6 @@ public:
 
     DoubleNode(T data) {
         this->data = data;
-
     }
 
     DoubleNode(T data, DoubleNode *next) {

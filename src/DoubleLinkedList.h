@@ -30,7 +30,6 @@ public:
         if(p->getData() == data){
             return p->getData();
         }else{
-            cout << "Double member not found in list" << endl;
             abort();
         }
     }
@@ -44,7 +43,6 @@ public:
         if(p->getData() == data){
             return p->getData();
         }else{
-            cout << "Double member not found in list" << endl;
             abort();
         }
     }
@@ -136,15 +134,22 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const DoubleLinkedList &doubleLinkedList) {
         DoubleNode<T> *p;
         p = doubleLinkedList.head;
-        std::string print_statement = "";
         while (p != nullptr) {
             os << "\nData: " << p->getData()
                                << "\nNext Pointer: " << p->getNextasString()
                                << "\nPrevious Pointer: " << p->getPreviousasString();
             p = p->getNext();
         }
-        os << print_statement;
         return os;
+    }
+
+    virtual ~DoubleLinkedList() {
+        DoubleNode<T> *p = nullptr;
+        while (head) {
+            p = head;
+            delete p;
+            head = head->getNext();
+        }
     }
 };
 

@@ -27,3 +27,8 @@ void Course::setGrade(double grade){
 void Course::setCredit_hour(uint8_t credit_hour){
     this->credit_hour = credit_hour;
 }
+
+std::string Course::getCode(){return code;}
+std::string Course::getTitle(){return title;}
+double Course::getGrade(){return grade;}
+uint8_t Course::getCredit_hour(){return credit_hour;}
